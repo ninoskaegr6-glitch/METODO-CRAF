@@ -791,7 +791,7 @@ async function doReg(){
   const er=document.getElementById('rer');er.textContent='';
   if(!nm||!ap||!em||!pw||isNaN(pi)||isNaN(po)||isNaN(h)||!fi||!ob){er.textContent='Completa todos los campos';return;}
   if(pw.length<6){er.textContent='Contraseña mínimo 6 caracteres';return;}
-  const btn=event.target;btn.disabled=true;btn.textContent='Creando perfil...';
+  const btn=document.querySelector('#RF .abtn');btn.disabled=true;btn.textContent='Creando perfil...';
   try{
     const c=await window._fbFns.createUserWithEmailAndPassword(window._auth,em,pw);
     await window._fbFns.updateProfile(c.user,{displayName:nm+' '+ap});
