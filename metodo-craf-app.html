@@ -780,6 +780,7 @@ async function doLogin(){
   if(!em||!pw){er.textContent='Completa todos los campos';return;}
   const btn=event.target;btn.disabled=true;btn.textContent='Entrando...';
   try{await window._fbFns.signInWithEmailAndPassword(window._auth,em,pw);}
+    brindis('👋¡Te damos la bienvenida a Método CRAF!'{
   catch(e){er.textContent=e.code.includes('credential')||e.code.includes('password')?'Email o contraseña incorrectos':'Error al iniciar sesión';btn.disabled=false;btn.textContent='Entrar al programa';}
 }
 async function doReg(){
