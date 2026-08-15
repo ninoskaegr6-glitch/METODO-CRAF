@@ -1017,20 +1017,65 @@ function renderFatC(d){if(!d.length)return;const s=[...d].filter(x=>x.grasa).sor
 function setPV(v,btn){PV=v;document.querySelectorAll('.fcomp ~ div .btn, .card .btn').forEach(b=>b.classList.remove('p'));if(btn)btn.classList.replace('s','p');}
 function upPhoto(t){PT=t;document.getElementById('FI').click();}
 function procPhoto(inp){
-  if(!inp.files||!inp.files[0])return;
-  const f=inp.files[0];
-  if(f.size>2*1024*1024){toast('Foto demasiado grande. Máx. 2 MB','err');return;}
-  const r=new FileReader();
-  r.onload=async e=>{
-    const b64=e.target.result;
-    const {doc,setDoc,serverTimestamp}=window._fbFns;
-    await setDoc(doc(window._db,'usuarios',CU.uid,'fotos',`${PV}_${PT}`),{data:b64,vista:PV,tipo:PT,fecha:tod(),ts:serverTimestamp()});
-    const slotId=PT==='antes'?'FA':'FN';
-    const slot=document.getElementById(slotId);
-    if(slot)slot.innerHTML=`<img src="${b64}" alt="Foto">`;
+  if(!inp.files || !inp.files[0]) return;
+
+  const f = inp.files[0];
+  const url = URL.createObjectURL(f);
+  const img = new Image();
+
+  img.onload = async () => {
+    URL.revokeObjectURL(url);
+
+    const maxSize = 1600;
+    let w = img.width;
+    let h = img.height;
+
+    if(w > maxSize || h > maxSize){
+      if(w > h){
+        h = Math.round(h * maxSize / w);
+        w = maxSize;
+      }else{
+        w = Math.round(w * maxSize / h);
+        h = maxSize;
+      }
+    }
+
+    const canvas = document.createElement('canvas');
+    canvas.width = w;
+    canvas.height = h;
+
+    const ctx = canvas.getContext('2d');
+    ctx.drawImage(img, 0, 0, w, h);
+
+    const b64 = canvas.toDataURL('image/jpeg', 0.75);
+
+    const {doc,setDoc,serverTimestamp} = window._fbFns;
+
+    await setDoc(
+      doc(window._db,'usuarios',CU.uid,'fotos',`${PV}_${PT}`),
+      {
+        data:b64,
+        vista:PV,
+        tipo:PT,
+        fecha:serverTimestamp(),
+        ts:serverTimestamp()
+      }
+    );
+
+    const slotId = PT==='antes'?'A':'FN';
+    const slot = document.getElementById(slotId);
+
+    if(slot) slot.innerHTML = `<img src="${b64}" alt="Foto">`;
+
     toast('✅ Foto guardada');
   };
-  r.readAsDataURL(f);
+
+  img.onerror = () => {
+    URL.revokeObjectURL(url);
+    toast('❌ No se pudo cargar la foto','err');
+  };
+
+  img.src = url;
 }
 
 // ── OBJETIVOS ──
