@@ -4,7 +4,7 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0">
 <meta name="apple-mobile-web-app-capable" content="yes">
-<meta name="theme-color" content="#141414">
+<meta name="theme-color" content="#141414">                                          
 <title>Método CRAF</title>
 <script type="module">
   import { initializeApp } from 'https://www.gstatic.com/firebasejs/10.12.0/firebase-app.js';
@@ -407,6 +407,26 @@ body{background:var(--bg);color:var(--white);font-family:var(--font);min-height:
           <option>Mejorar rendimiento deportivo</option>
         </select>
       </div>
+      <div class="hcard" style="margin-top:18px">
+  <div style="color:var(--green);font-weight:700;margin-bottom:12px">
+    CONSENTIMIENTOS *
+  </div>
+
+  <label style="display:flex;align-items:center;gap:12px;margin:12px 0;cursor:pointer">
+    <input type="checkbox" id="CRAF_CONS1">
+    <span>Acepto los términos y condiciones del programa Método CRAF</span>
+  </label>
+
+  <label style="display:flex;align-items:center;gap:12px;margin:12px 0;cursor:pointer">
+    <input type="checkbox" id="CRAF_CONS2">
+    <span>Autorizo el tratamiento de mis datos personales y fotos de progreso</span>
+  </label>
+
+  <label style="display:flex;align-items:center;gap:12px;margin:12px 0;cursor:pointer">
+    <input type="checkbox" id="CRAF_CONS3">
+    <span>Confirmo que mi estado de salud es apto para iniciar el programa</span>
+  </label>
+</div>
       <button class="abtn" onclick="doReg()">Crear mi perfil CRAF</button>
       <div class="aerr" id="rer"></div>
     </div>
@@ -784,6 +804,14 @@ async function doLogin(){
   catch(e){er.textContent=e.code.includes('credential')||e.code.includes('password')?'Email o contraseña incorrectos':'Error al iniciar sesión';btn.disabled=false;btn.textContent='Entrar al programa';}
 }
 async function doReg(){
+  const c1=document.getElementById('CRAF_CONS1');
+const c2=document.getElementById('CRAF_CONS2');
+const c3=document.getElementById('CRAF_CONS3');
+if(!c1.checked || !c2.checked || !c3.checked){
+  toast('⚠️ Debes aceptar los tres consentimientos para continuar','err');
+  return;
+}
+
   const nm=document.getElementById('rnm').value.trim(),ap=document.getElementById('rap').value.trim();
   const em=document.getElementById('rem').value.trim(),pw=document.getElementById('rpw').value;
   const pi=parseFloat(document.getElementById('rpi').value),po=parseFloat(document.getElementById('rpo').value);
