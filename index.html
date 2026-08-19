@@ -898,6 +898,8 @@ async function doReg(){
     toast('✅ Perfil creado. ¡Bienvenido/a!');
   }catch(e){er.textContent=e.code.includes('email-already')?'Este email ya está registrado':'Error al crear el perfil';btn.disabled=false;btn.textContent='Crear mi perfil CRAF';}
 }
+  
+window.doReg = doReg;
 async function doLogout(){await window._fbFns.signOut(window._auth);UNSUBS.forEach(u=>u());UNSUBS=[];CU=null;UP=null;toast('Sesión cerrada');}
 async function doReset(){const em=document.getElementById('lem').value.trim();if(!em){document.getElementById('ler').textContent='Introduce tu email primero';return;}await window._fbFns.sendPasswordResetEmail(window._auth,em);toast('📧 Email de recuperación enviado');}
 
