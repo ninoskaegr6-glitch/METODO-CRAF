@@ -896,7 +896,7 @@ async function doReg(){
     const {doc,setDoc,serverTimestamp}=window._fbFns;
     await setDoc(doc(window._db,'usuarios',c.user.uid),{nombre:nm,apellidos:ap,email:em,peso_inicial:pi,peso_objetivo:po,altura:h,fecha_inicio:fi,objetivo_principal:ob,fecha_registro:serverTimestamp(),rol:'cliente'});
     toast('✅ Perfil creado. ¡Bienvenido/a!');
-  }catch(e){er.textContent=e.code.includes('email-already')?'Este email ya está registrado':'Error al crear el perfil';btn.disabled=false;btn.textContent='Crear mi perfil CRAF';}
+  }catch(e){er.textContent=e.code.includes('email-already')?'Este email ya está registrado':'Error al crear el perfil';btn.disabled=false;btn.textContent='Crear mi perfil CRAF';
 }
   
 window.doReg = doReg;
