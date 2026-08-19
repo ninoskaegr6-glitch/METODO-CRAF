@@ -409,27 +409,104 @@ body{background:var(--bg);color:var(--white);font-family:var(--font);min-height:
       </div>
             </div>
 
-      <div style="margin:20px 0;padding:18px;border:1px solid var(--border);border-radius:12px;">
-        <div style="font-weight:700;margin-bottom:12px;">Consentimientos</div>
+      <!-- CONSENTIMIENTOS -->
+<div style="margin:20px 0 18px 0;">
 
-        <label style="display:block;margin:10px 0;">
-          <input type="checkbox" id="CRAF_CONS1">
-          Acepto los términos y condiciones del programa Método CRAF.
-        </label>
+  <div style="
+    font-weight:800;
+    font-size:14px;
+    letter-spacing:1.5px;
+    color:#8CFF3F;
+    margin-bottom:14px;
+    text-transform:uppercase;
+  ">
+    CONSENTIMIENTOS
+  </div>
 
-        <label style="display:block;margin:10px 0;">
-          <input type="checkbox" id="CRAF_CONS2">
-          Autorizo el tratamiento de mis datos personales y fotos de progreso.
-        </label>
+  <label style="
+    display:flex;
+    align-items:flex-start;
+    gap:10px;
+    margin:12px 0;
+    color:#fff;
+    font-size:15px;
+    line-height:1.35;
+    cursor:pointer;
+  ">
+    <input
+      type="checkbox"
+      id="CRAF_CONS1"
+      style="
+        width:17px;
+        height:17px;
+        min-width:17px;
+        margin-top:2px;
+        accent-color:#8CFF3F;
+        cursor:pointer;
+      "
+    >
+    <span>
+      Acepto los términos y condiciones del programa Método CRAF.
+    </span>
+  </label>
 
-        <label style="display:block;margin:10px 0;">
-          <input type="checkbox" id="CRAF_CONS3">
-          Confirmo que mi estado de salud es apto para iniciar el programa.
-        </label>
-      </div>
+  <label style="
+    display:flex;
+    align-items:flex-start;
+    gap:10px;
+    margin:12px 0;
+    color:#fff;
+    font-size:15px;
+    line-height:1.35;
+    cursor:pointer;
+  ">
+    <input
+      type="checkbox"
+      id="CRAF_CONS2"
+      style="
+        width:17px;
+        height:17px;
+        min-width:17px;
+        margin-top:2px;
+        accent-color:#8CFF3F;
+        cursor:pointer;
+      "
+    >
+    <span>
+      Autorizo el tratamiento de mis datos personales y fotos de progreso.
+    </span>
+  </label>
 
-     <button class="abtn" onclick="doReg()">Crear mi perfil CRAF</button>
-      <div class="aerr" id="rer"></div>
+  <label style="
+    display:flex;
+    align-items:flex-start;
+    gap:10px;
+    margin:12px 0;
+    color:#fff;
+    font-size:15px;
+    line-height:1.35;
+    cursor:pointer;
+  ">
+    <input
+      type="checkbox"
+      id="CRAF_CONS3"
+      style="
+        width:17px;
+        height:17px;
+        min-width:17px;
+        margin-top:2px;
+        accent-color:#8CFF3F;
+        cursor:pointer;
+      "
+    >
+    <span>
+      Confirmo que mi estado de salud es apto para iniciar el programa.
+    </span>
+  </label>
+
+</div>
+
+<button class="abtn" onclick="doReg()">Crear mi perfil CRAF</button>
     </div>
   </div>
 </div>
